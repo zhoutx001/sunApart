@@ -12,18 +12,13 @@ let currentCityTime={hr:0,min:0,sec:0};
 const sun = document.getElementById('sun'); 
 const stage = document.getElementById('stage'); 
 
-let start;
-
-
-
-
 function reset_animation() {
   sun.style.animation = 'none';
-  sun.offsetHeight; /* trigger reflow */
+  sun.offsetHeight; 
   sun.style.animation = null; 
 
   stage.style.animation = 'none';
-  stage.offsetHeight; /* trigger reflow */
+  stage.offsetHeight; 
   stage.style.animation = null; 
 }
 function pause(){
@@ -56,7 +51,7 @@ async function getGeoData(){
 
     //https://sunrise-sunset.org/api
     sun_api_url=`https://api.sunrise-sunset.org/json?lat=${cityLat}&lng=${cityLng}&date=today`;
-    timeZone_api_url=`http://api.timezonedb.com/v2.1/get-time-zone?key=Y8EE6I1N027G&format=json&by=position&lat=${cityLat}&lng=${cityLng}`;
+    timeZone_api_url=`https://api.timezonedb.com/v2.1/get-time-zone?key=Y8EE6I1N027G&format=json&by=position&lat=${cityLat}&lng=${cityLng}`;
     getTimeZoneData();
     if(timeZoneOffset)
     
@@ -71,9 +66,6 @@ async function getSunData() {
 
    
     console.log(data.results)
-    // let hr=parseInt(sunset);
-    // let min=parseInt(sunset.slice(3));
-    // let sec=parseInt(sunset.slice(6));
 
     let utcTime=new Date();
     UTCtime.hr=utcTime.getUTCHours();
@@ -104,9 +96,6 @@ async function getSunData() {
         
         setTimeout(() => {pause();}, 15000*sunPos);
     }
-    
-    // document.getElementById('sunrise').textContent=sunRiseTime.hr+" : "+sunRiseTime.min+" : "+sunRiseTime.sec;
-    // document.getElementById('sunset').textContent=sunSetTime.hr+" : "+sunSetTime.min+" : "+sunSetTime.sec;
 }
 
 async function getTimeZoneData() {
@@ -116,7 +105,3 @@ async function getTimeZoneData() {
     timeZoneOffset=gmtOffset/3600;
     console.log(timeZoneOffset);
 }
-
-
-//getSunData();
-
